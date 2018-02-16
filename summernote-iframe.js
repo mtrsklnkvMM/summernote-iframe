@@ -1,4 +1,4 @@
-﻿(function (factory) {
+(function (factory) {
     /* global define */
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -11,7 +11,7 @@
         factory(window.jQuery);
     }
 }(function ($) {
-    // Extends lang for print plugin.
+
     $.extend(true, $.summernote.lang, {
         'en-US': {
             iframe: {
@@ -23,20 +23,14 @@
 
     // Extends plugins for print plugin.
     $.extend($.summernote.plugins, {
-        /**
-         * @param {Object} context - context object has status of editor.
-         */
         'iframe': function (context) {
             var self = this;
 
-            // ui has renders to build ui elements.
-            //  - you can create a button with `ui.button`
             var ui = $.summernote.ui;
             var $editor = context.layoutInfo.editor;
             var options = context.options;
             var lang = options.langInfo;
             var $note = context.layoutInfo.note;
-            var $editor = context.layoutInfo.editor;
 
             this.initialize = function () {
                 var $container = options.dialogsInBody ? $(document.body) : $editor;
@@ -83,7 +77,6 @@
                             var link = $('#AddIFrame').val();
                             var w = $('#AddIFrame_txtWidth').val();
                             var h = $('#AddIFrame_txtHeight').val();
-                            console.log(link)
                             var iframeData = '<iframe id="IFrame_htmIFrame" src="'+ link +'" scrolling="auto" width="'+w+'" frameborder="0" allowindex="True" height="'+h+'" hideadminborder="False"></iframe>'
                             $note.summernote('code', iframeData);
                             ui.hideDialog(self.$dialog);
@@ -101,9 +94,9 @@
                     ui.showDialog(self.$dialog);
                 });
             }
-            // add print button
+           
             context.memo('button.iframe', function () {
-                // create button
+     
                 var button = ui.button({
                     contents: '<i class="fa fa-info"/>',
                     tooltip: lang.iframe.iframe,
